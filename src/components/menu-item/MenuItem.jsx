@@ -1,5 +1,16 @@
 import React from "react";
+
 import "./MenuItem.styles.scss";
+
+import { useNavigate } from "react-router";
+
+export const withRouter = (Component) => {
+  const Wrapper = (props) => {
+    const history = useNavigate();
+    return <Component history={history} {...props} />;
+  };
+  return Wrapper;
+};
 
 function MenuItem({ title, imageUrl, size }) {
   return (
@@ -16,4 +27,4 @@ function MenuItem({ title, imageUrl, size }) {
   );
 }
 
-export default MenuItem;
+export default withRouter(MenuItem);
